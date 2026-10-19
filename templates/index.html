@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <title>MP3 / OGG → Texte · Whisper</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="eyebrow">WHISPER · OPENAI</p>
+  <h1>Votre audio,<br>en toutes lettres.</h1>
+  <p class="intro">Importez un MP3 ou OGG, puis récupérez sa transcription au format texte.</p>
+  <form id="form">
+    <label for="audio" class="upload">Choisissez votre fichier MP3 ou OGG
+      <input id="audio" name="audio" type="file" accept=".mp3,.ogg,audio/mpeg,audio/ogg,application/ogg" required>
+      <span>Moins de 25 Mo · un fichier à la fois</span>
+    </label>
+    <label for="language">Langue de l’enregistrement</label>
+    <select name="language" id="language">
+      <option value="">Détection automatique</option><option value="fr">Français</option>
+      <option value="en">Anglais</option><option value="de">Allemand</option>
+      <option value="it">Italien</option><option value="es">Espagnol</option>
+    </select>
+    <button id="submit" type="submit">Transcrire l’audio →</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+  <section id="result" hidden>
+    <div class="result-title"><h2>Votre transcription</h2><button id="download" type="button">Télécharger le TXT ↓</button></div>
+    <textarea id="text" aria-label="Transcription modifiable" spellcheck="false"></textarea>
+    <p class="hint">Vous pouvez corriger le texte avant de le télécharger.</p>
+  </section>
+  <footer>L’audio est envoyé à OpenAI pour transcription. Utilisation facturée sur votre compte API. Aucun historique n’est conservé par cette application.</footer>
+</main>
+</body></html>
